@@ -16,3 +16,31 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: This job will fail
+        run: |
+          echo "Starting the build job..."
+          sleep 10
+          echo "Build failed!"
+          exit 1
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: This job will be canceled
+        run: |
+          echo "Starting the test job..."
+          sleep 30 # This job takes longer
+          echo "This message will not be printed."
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: This job will also be canceled
+        run: |
+          echo "Starting the deploy job..."
+          sleep 30 # This job also takes longer
+          echo "This message will not be printed either."
